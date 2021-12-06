@@ -2,6 +2,10 @@
 
 Desafio MVC - GFT Start 2021/2
 
+## Configuração inicial:
+Para o envio do email funcionar corretamente, altere o arquivo [mvc-challenge/src/main/java/com/gft/mvcproject/controllers/IndexController.java](https://github.com/mahiro7/mvc-challenge/blob/main/src/main/java/com/gft/mvcproject/controllers/IndexController.java):
+- Na linha 59, altere "emailaqui@dominio.com" para o email de preferência.
+
 ## Credenciais base:
 ### Administradores:
 > 1 - 
