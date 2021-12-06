@@ -56,7 +56,7 @@ public class IndexController implements ErrorController {
                 message.setFrom(new InternetAddress("from@gmail.com"));
                 message.setRecipients(
                         Message.RecipientType.TO,
-                        InternetAddress.parse("clecio.silva@gft.com")
+                        InternetAddress.parse("emailaqui@dominio.com")
                 );
                 message.setSubject("Login de Scrum Master");
                 message.setText("Detectado login de Scrum Master!");
