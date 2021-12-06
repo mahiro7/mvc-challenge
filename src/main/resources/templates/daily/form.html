@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}"
+>
+<title>Daily - Formulário</title>
+
+
+
+<div layout:fragment="content">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>
+                Daily<span th:if="${page != null}" th:text="${page}"></span>
+            </h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item">Dailies</li>
+                    <li class="breadcrumb-item active">Cadastrar</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+        <div class="alert alert-primary" th:if="${message != null}" th:text="${message}"></div>
+        <div class="card">
+           <div class="card-body">
+               <form method="post" th:action="@{/daily/new}" th:object="${daily}">
+                   <input type="hidden" th:field="*{id}" />
+                   <div class="form-group mb-3">
+                       <label class="mb-1 mt-2" for="starter">Starter</label>
+                       <select class="form-select" id="starter" th:field="*{starter}">
+                           <option th:each="starter: ${starters}" th:text="${starter.nome}+' - '+${starter.quatroLetras}" th:value="${starter.id}"></option>
+                       </select>
+                       <div class="text-danger" th:if="${#fields.hasErrors('starter')}" th:errors="*{starter}"></div>
+
+                       <label class="mb-1 mt-2" for="data">Data</label>
+                       <input class="form-control" id="data" type="date" th:field="*{data}">
+                       <div class="text-danger" th:if="${codeError != null}" th:text="${codeError}"></div>
+                       <div class="text-danger" th:if="${#fields.hasErrors('data')}" th:errors="*{data}"></div>
+
+                       <label class="mb-1 mt-2" for="feito">Feito</label>
+                       <input class="form-control" id="feito" type="text" th:field="*{feito}" />
+                       <div class="text-danger" th:if="${codeError != null}" th:text="${codeError}"></div>
+                       <div class="text-danger" th:if="${#fields.hasErrors('feito')}" th:errors="*{feito}"></div>
+
+                       <label class="mb-1 mt-2" for="fazendo">Fazendo</label>
+                       <input class="form-control" id="fazendo" type="text" th:field="*{fazendo}" />
+                       <div class="text-danger" th:if="${codeError != null}" th:text="${codeError}"></div>
+                       <div class="text-danger" th:if="${#fields.hasErrors('fazendo')}" th:errors="*{fazendo}"></div>
+
+                       <label class="mb-1 mt-2" for="impedimentos">Impedimentos</label>
+                       <input class="form-control" id="impedimentos" type="text" th:field="*{impedimentos}" />
+                       <div class="text-danger" th:if="${codeError != null}" th:text="${codeError}"></div>
+                       <div class="text-danger" th:if="${#fields.hasErrors('impedimentos')}" th:errors="*{impedimentos}"></div>
+
+                       <label class="mb-1 mt-2" for="presente">Presente</label>
+                       <input id="presente" type="checkbox" th:field="*{presente}" />
+                       <div class="text-danger" th:if="${codeError != null}" th:text="${codeError}"></div>
+                       <div class="text-danger" th:if="${#fields.hasErrors('presente')}" th:errors="*{presente}"></div>
+
+                   </div>
+                   <button class="btn btn-primary mt-1" type="submit">
+                       <span th:if="${button != null}" th:text="${button}"></span>
+                   </button>
+               </form>
+           </div>
+        </div>
+    </main>
+</div>
+
+</html>

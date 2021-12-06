@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}"
+>
+<title>Programa Start - Lista</title>
+
+<div layout:fragment="content">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Programa Start</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item">Turmas</li>
+                    <li class="breadcrumb-item active">Listar</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <div class="alert alert-danger" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
+        <div class="alert alert-primary" th:if="${message != null}" th:text="${message}"></div>
+        <div class="card">
+            <div class="card-body">
+                <!-- Table with stripped rows -->
+
+                <div class="alert alert-secondary mt-4" th:if="${turmas.empty}">
+                    <p>Nenhuma turma cadastrada!</p>
+                    <a href="/turma/new" class="btn btn-primary mt-1">Cadastrar nova turma</a>
+                </div>
+                <table class="table table-striped" th:if="${!turmas.empty}">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Turma</th>
+                        <th scope="col">Início</th>
+                        <th scope="col">Término</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="turma: ${turmas}">
+                        <th scope="row" th:text="${turma.id}"></th>
+                        <td th:text="${turma.turma}"></td>
+                        <td th:text="${#dates.format(turma.inicio, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${#dates.format(turma.termino, 'dd/MM/yyyy')}"></td>
+                        <td>
+                            <a th:href="@{/turma/edit(id=${turma.id})}">Editar</a>
+                            <a th:href="@{/turma/delete(id=${turma.id})}" onclick="return confirm('Você realmente deseja excluir esta turma?')">Excluir</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+
+        </div>
+    </main>
+</div>
+
+</html>

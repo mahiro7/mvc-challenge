@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}"
+>
+<title>Usuário - Formulário</title>
+
+<div layout:fragment="content">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>
+                Usuário<span th:if="${page != null}" th:text="${page}"></span>
+            </h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item">Usuários</li>
+                    <li class="breadcrumb-item active">Registrar usuário</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+        <div class="alert alert-primary" th:if="${message != null}" th:text="${message}"></div>
+        <div class="card">
+            <div class="card-body">
+                <form method="post" th:action="@{/user/new}" th:object="${user}">
+                    <input type="hidden" th:field="*{id}" />
+                    <div class="form-group mb-3">
+                        <label class="mb-1 mt-2" for="username">Usuário</label>
+                        <input class="form-control" id="username" type="text" th:field="*{username}" />
+                        <div class="text-danger" th:if="${codeError != null}" th:text="${codeError}"></div>
+                        <div class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                        <label class="mb-1 mt-2" for="password">Senha</label>
+                        <input class="form-control" id="password" type="text" th:field="*{password}" />
+                        <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                        <label class="mb-1 mt-2" for="cargo">Cargo</label>
+                        <select class="form-select" th:field="*{cargo}" id="cargo">
+                            <option th:each="cargo: ${cargos}" th:value="${cargo.id}" th:text="${cargo.id == 1} ? 'Administrador' : 'Scrum Master'"></option>
+                        </select>
+                        <input value="true" type="checkbox" id="enabled" th:field="*{enabled}" />
+                        <label class="mb-1 mt-2" for="enabled"> Ativo</label>
+                    </div>
+                    <button class="btn btn-primary mt-1" type="submit">
+                        <span th:if="${button != null}" th:text="${button}"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}"
+>
+<title>Daily - Lista</title>
+
+<div layout:fragment="content">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Daily</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item">Dailies</li>
+                    <li class="breadcrumb-item active">Listar</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <div class="alert alert-danger" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
+        <div class="alert alert-primary" th:if="${message != null}" th:text="${message}"></div>
+        <div class="card">
+            <div class="card-body">
+                <!-- Table with stripped rows -->
+
+                <div class="alert alert-secondary mt-4" th:if="${dailies.empty}">
+                    <p>Nenhuma daily cadastrada!</p>
+                    <a href="/daily/new" class="btn btn-primary mt-1">Cadastrar nova daily</a>
+                </div>
+                <table class="table table-striped" th:if="${!dailies.empty}">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Starter</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Feito</th>
+                        <th scope="col">Fazendo</th>
+                        <th scope="col">Presente</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="daily: ${dailies}">
+                        <th scope="row" th:text="${daily.id}"></th>
+                        <td th:text="${daily.starter.nome}"></td>
+                        <td th:text="${#dates.format(daily.data, 'dd/MM/yyyy')}"></td>
+                        <td><a th:href="@{/daily/feito(id=${daily.id})}">Ler Feito</a></td>
+                        <td><a th:href="@{/daily/fazendo(id=${daily.id})}">Ler Fazendo</a></td>
+                        <td th:text="${daily.presente ? 'Sim' : 'Não'}"></td>
+                        <td>
+                            <a th:href="@{/daily/edit(id=${daily.id})}">Editar</a>
+                            <a th:href="@{/daily/delete(id=${daily.id})}" onclick="return confirm('Você realmente deseja excluir esta daily?')">Excluir</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+
+        </div>
+    </main>
+</div>
+
+</html>

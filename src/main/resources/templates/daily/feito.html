@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}"
+>
+<title>Daily - Feito</title>
+
+<div layout:fragment="content">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Feito</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item">Dailies</li>
+                    <li class="breadcrumb-item">Listar</li>
+                    <li class="breadcrumb-item active">Feito</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <div class="alert alert-danger" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
+        <div class="alert alert-primary" th:if="${message != null}" th:text="${message}"></div>
+        <div class="card">
+            <div class="card-body">
+                <p class="mt-2" th:text="${daily.feito}"></p>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>CRUD</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/NiceAdmin/assets/img/favicon.png" rel="icon">
+    <link href="/NiceAdmin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/NiceAdmin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/NiceAdmin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/NiceAdmin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/NiceAdmin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/NiceAdmin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/NiceAdmin/assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: NiceAdmin - v2.2.0
+    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center" style="position:relative;left:-80px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 131 24" style="enable-background:new 0 0 131 24" xml:space="preserve"><path d="M0 0v24h131V0H0zm85.2 15.4c-1 1.4-2.7 2.2-4.7 2.2-3.5 0-5.9-2.3-5.9-5.8S77 6 80.5 6c1.8 0 3.3.6 4.3 1.7l.1.1-1.4 1.4-.1-.1c-.8-.7-1.8-1.1-2.9-1.1-2.1 0-3.6 1.5-3.6 3.8s1.5 3.8 3.6 3.8c1 0 1.9-.3 2.5-.9v-1.9h-2.6v-1.9h4.9v4.5zm11.4-7.1h-6.3v2.6h5.9v2h-5.9v4.6H88V6.3h8.7v2zm9.6 0h-3.1v9.2h-2.3V8.3h-3v-2h8.4v2zm18.4 9.2h-11.1V6.3h11.1v11.2z" style="fill:#213e7f"/></svg>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn" style="position:relative;left:-77px;"></i>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+        <div class="nav-item pe-3 float-right">
+            <a href="/logout">
+                Logout
+            </a>
+        </div>
+    </nav>
+
+</header><!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " href="/">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#empregados-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-people"></i><span>Starters</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="empregados-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/starter">
+                        <i class="bi bi-circle"></i><span>Listar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/starter/new">
+                        <i class="bi bi-circle"></i><span>Cadastrar</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Empregados Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#usuarios-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person-badge"></i><span>Usuários</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="usuarios-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/user?cargo=Administradores">
+                        <i class="bi bi-circle"></i><span>Administradores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user?cargo=Scrum+Masters">
+                        <i class="bi bi-circle"></i><span>Scrum Masters</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/new">
+                        <i class="bi bi-circle"></i><span>Registrar usuário</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Usuários Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#turmas-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>Turmas</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="turmas-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/turma">
+                        <i class="bi bi-circle"></i><span>Listar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/turma/new">
+                        <i class="bi bi-circle"></i><span>Cadastrar</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Turmas Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tecnologias-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-laptop"></i><span>Tecnologias</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="tecnologias-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/tecnologia">
+                        <i class="bi bi-circle"></i><span>Listar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/tecnologia/new">
+                        <i class="bi bi-circle"></i><span>Cadastrar</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tecnologias Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#grupos-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-kanban"></i><span>Grupos</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="grupos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/grupo">
+                        <i class="bi bi-circle"></i><span>Listar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/grupo/new">
+                        <i class="bi bi-circle"></i><span>Cadastrar</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Grupos Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#projetos-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-lightbulb"></i><span>Projetos</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="projetos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/projeto">
+                        <i class="bi bi-circle"></i><span>Listar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/projeto/new">
+                        <i class="bi bi-circle"></i><span>Cadastrar</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Projetos Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#dailies-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-calendar-check"></i><span>Dailies</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="dailies-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/daily">
+                        <i class="bi bi-circle"></i><span>Listar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/daily/new">
+                        <i class="bi bi-circle"></i><span>Cadastrar</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Dailies Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#modulo-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-app"></i><span>Modulos</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="modulo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/modulo">
+                        <i class="bi bi-circle"></i><span>Listar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/modulo/new">
+                        <i class="bi bi-circle"></i><span>Cadastrar</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Modulos Nav -->
+
+    </ul>
+</aside><!-- End Sidebar-->
+
+
+    <!-- Conteúdo da página dentro do layout -->
+<div id="conteudo" layout:fragment="content" class="container mt-5"></div>
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+    <div class="copyright">
+        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="/NiceAdmin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="/NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/NiceAdmin/assets/vendor/chart.js/chart.min.js"></script>
+<script src="/NiceAdmin/assets/vendor/echarts/echarts.min.js"></script>
+<script src="/NiceAdmin/assets/vendor/quill/quill.min.js"></script>
+<script src="/NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="/NiceAdmin/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="/NiceAdmin/assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/NiceAdmin/assets/js/main.js"></script>
+
+</body>
+</html>

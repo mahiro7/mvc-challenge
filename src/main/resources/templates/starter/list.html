@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}"
+>
+<title>Starter - Lista</title>
+
+<div layout:fragment="content">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Starters</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item">Starters</li>
+                    <li class="breadcrumb-item active">Listar</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <div class="alert alert-danger" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
+        <div class="alert alert-primary" th:if="${message != null}" th:text="${message}"></div>
+        <div class="card">
+            <div class="card-body">
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Quatro Letras</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="starter: ${starters}">
+                        <td><img th:src="@{'/user-photos/' + ${starter.id} + '/' + ${starter.photos}}" style="max-width: 70px; max-height: 140px" /></td>
+                        <th scope="row" th:text="${starter.id}"></th>
+                        <td th:text="${starter.nome}"></td>
+                        <td th:text="${starter.quatroLetras}"></td>
+                        <td>
+                            <a th:href="@{/starter/edit(id=${starter.id})}">Editar</a>
+                            <a th:href="@{/starter/delete(id=${starter.id})}" onclick="return confirm('Você realmente deseja excluir este starter?')">Excluir</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+
+        </div>
+    </main>
+</div>
+
+</html>

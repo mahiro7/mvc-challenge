@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}"
+>
+<title>Programa Start - Formulário</title>
+
+
+
+<div layout:fragment="content">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>
+                Programa Start<span th:if="${page != null}" th:text="${page}"></span>
+            </h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item">Turmas</li>
+                    <li class="breadcrumb-item active">Cadastrar</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+        <div class="alert alert-primary" th:if="${message != null}" th:text="${message}"></div>
+        <div class="card">
+           <div class="card-body">
+               <form method="post" th:action="@{/turma/new}" th:object="${programaStart}">
+                   <input type="hidden" th:field="*{id}" />
+                   <div class="form-group mb-3">
+                       <label class="mb-1 mt-2" for="turma">Turma</label>
+                       <input class="form-control" id="turma" type="text" th:field="*{turma}" />
+                       <div class="text-danger" th:if="${codeError != null}" th:text="${codeError}"></div>
+                       <div class="text-danger" th:if="${#fields.hasErrors('turma')}" th:errors="*{turma}"></div>
+                       <label class="mb-1 mt-2" for="inicio">Início</label>
+                       <input class="form-control" id="inicio" type="date" th:field="*{inicio}" />
+                       <div class="text-danger" th:if="${#fields.hasErrors('inicio')}" th:errors="*{inicio}"></div>
+                       <label class="mb-1 mt-2" for="termino">Término</label>
+                       <input class="form-control" id="termino" type="date" th:field="*{termino}" />
+                       <div class="text-danger" th:if="${#fields.hasErrors('termino')}" th:errors="*{termino}"></div>
+                   </div>
+                   <button class="btn btn-primary mt-1" type="submit">
+                       <span th:if="${button != null}" th:text="${button}"></span>
+                   </button>
+               </form>
+           </div>
+        </div>
+    </main>
+</div>
+
+</html>

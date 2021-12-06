@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}"
+>
+<title>Grupo - Formulário</title>
+
+
+
+<div layout:fragment="content">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>
+                Grupo<span th:if="${page != null}" th:text="${page}"></span>
+            </h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item">Grupos</li>
+                    <li class="breadcrumb-item active">Cadastrar</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+        <div class="alert alert-primary" th:if="${message != null}" th:text="${message}"></div>
+        <div class="card">
+           <div class="card-body">
+               <form method="post" th:action="@{/grupo/new}" th:object="${grupo}">
+                   <input type="hidden" th:field="*{id}" />
+                   <div class="form-group mb-3">
+                       <label class="mb-1 mt-2" for="tecnologia">Tecnologia</label>
+                       <select class="form-select" id="tecnologia" th:field="*{tecnologia}">
+                           <option th:each="tecnologia: ${tecnologias}" th:value="${tecnologia.id}" th:text="${tecnologia.nome}"></option>
+                       </select>
+                       <div class="text-danger" th:if="${codeError != null}" th:text="${codeError}"></div>
+                       <div class="text-danger" th:if="${#fields.hasErrors('tecnologia')}" th:errors="*{tecnologia}"></div>
+                       <label class="mb-1 mt-2" for="scrumMaster">Scrum Master</label>
+                       <select class="form-select" id="scrumMaster" th:field="*{scrumMaster}">
+                           <option th:each="scrumMaster: ${scrumMasters}" th:value="${scrumMaster.id}" th:text="${scrumMaster.username}"></option>
+                       </select>
+                       <div class="text-danger" th:if="${#fields.hasErrors('scrumMaster')}" th:errors="*{scrumMaster}"></div>
+                       <label class="mb-1 mt-2" for="starters">Starters</label>
+                       <div id="starters" class="form-group mb-3">
+                            <div th:each="starter: ${starters}">
+                                <input type="checkbox" th:value="${starter.id}" th:text="'  '+${starter.nome}+' - '+${starter.quatroLetras}" th:field="*{starters}">
+                            </div>
+                       </div>
+                   </div>
+                   <button class="btn btn-primary mt-1" type="submit">
+                       <span th:if="${button != null}" th:text="${button}"></span>
+                   </button>
+               </form>
+           </div>
+        </div>
+    </main>
+</div>
+
+</html>
