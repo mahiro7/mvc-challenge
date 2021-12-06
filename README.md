@@ -1,6 +1,7 @@
 # mvc-challenge
 
 Desafio MVC - GFT Start 2021/2
+O repositório está, inicialmente, no GitHub, já que estou tendo problemas com o GitLab.
 
 ## Configuração inicial:
 Para o envio do email funcionar corretamente, altere o arquivo [mvc-challenge/src/main/java/com/gft/mvcproject/controllers/IndexController.java](https://github.com/mahiro7/mvc-challenge/blob/main/src/main/java/com/gft/mvcproject/controllers/IndexController.java):
