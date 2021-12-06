@@ -35,7 +35,7 @@ public class ModuloController {
             mv.addObject("button", "Salvar");
         }
 
-        if (!isUnique) {
+        if (!isUnique && isNewModulo) {
             mv.addObject("modulo", modulo);
             mv.addObject("error", "Modulo já existe!");
             return mv;
@@ -114,7 +114,7 @@ public class ModuloController {
     public ModelAndView listModulo() {
         ModelAndView mv = new ModelAndView("modulo/list.html");
 
-        mv.addObject("dailies", moduloService.listDailies());
+        mv.addObject("modulos", moduloService.listDailies());
 
         return mv;
     }

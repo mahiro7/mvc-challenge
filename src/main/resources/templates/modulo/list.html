@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}"
+>
+<title>Módulos - Lista</title>
+
+<div layout:fragment="content">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Módulos</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item">Módulos</li>
+                    <li class="breadcrumb-item active">Listar</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <div class="alert alert-danger" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
+        <div class="alert alert-primary" th:if="${message != null}" th:text="${message}"></div>
+        <div class="card">
+            <div class="card-body">
+                <!-- Table with stripped rows -->
+
+                <div class="alert alert-secondary mt-4" th:if="${modulos.empty}">
+                    <p>Nenhum módulo cadastrado!</p>
+                    <a href="/modulo/new" class="btn btn-primary mt-1">Cadastrar novo módulo</a>
+                </div>
+                <table class="table table-striped" th:if="${!modulos.empty}">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="modulo: ${modulos}">
+                        <th scope="row" th:text="${modulo.id}"></th>
+                        <td th:text="${modulo.nome}"></td>
+                        <td>
+                            <a th:href="@{/modulo/edit(id=${modulo.id})}">Editar</a>
+                            <a th:href="@{/modulo/delete(id=${modulo.id})}" onclick="return confirm('Você realmente deseja excluir este módulo?')">Excluir</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+
+        </div>
+    </main>
+</div>
+
+</html>

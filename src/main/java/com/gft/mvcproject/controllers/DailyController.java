@@ -36,7 +36,7 @@ public class DailyController {
             mv.addObject("button", "Salvar");
         }
 
-        if (!isUnique) {
+        if (!isUnique && isNewDaily) {
             mv.addObject("daily", daily);
             mv.addObject("error", "Daily já existe!");
             return mv;

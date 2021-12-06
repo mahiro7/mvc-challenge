@@ -30,7 +30,7 @@ public class TecnologiaController {
             mv.addObject("button", "Salvar");
         }
 
-        if (!isUnique) {
+        if (!isUnique && isNewTecnologia) {
             mv.addObject("tecnologia", tecnologia);
             mv.addObject("error", "Tecnologia já existe!");
             return mv;

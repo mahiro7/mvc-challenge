@@ -32,7 +32,7 @@
                         <div class="text-danger" th:if="${codeError != null}" th:text="${codeError}"></div>
                         <div class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                         <label class="mb-1 mt-2" for="password">Senha</label>
-                        <input class="form-control" id="password" type="text" th:field="*{password}" />
+                        <input class="form-control" id="password" type="password" th:field="*{password}" />
                         <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                         <label class="mb-1 mt-2" for="cargo">Cargo</label>
                         <select class="form-select" th:field="*{cargo}" id="cargo">

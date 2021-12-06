@@ -36,9 +36,10 @@ public class UserController {
             mv.addObject("button", "Salvar");
         }
 
-        if (!isUnique) {
+        if (!isUnique && isNewUser) {
             mv.addObject("user", user);
-            mv.addObject("usernameError", "Usuário já existe!");
+            mv.addObject("error", "Usuário já existe!");
+            return mv;
         }
 
         if (!isSaving) {
@@ -51,6 +52,7 @@ public class UserController {
                 mv.addObject("user", new User());
                 mv.addObject("message", "Usuário cadastrado com sucesso!");
             } else {
+                user.setPassword("");
                 mv.addObject("user", userService.saveUser(user));
                 mv.addObject("message", "Usuário salvo com sucesso!");
             }

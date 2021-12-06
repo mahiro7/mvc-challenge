@@ -33,9 +33,10 @@ public class StarterController {
             mv.addObject("button", "Salvar");
         }
 
-        if (!isUnique) {
+        if (!isUnique && isNewStarter) {
             mv.addObject("starter", starter);
             mv.addObject("usernameError", "Starter já existe!");
+            return mv;
         }
 
         if (!isSaving) {

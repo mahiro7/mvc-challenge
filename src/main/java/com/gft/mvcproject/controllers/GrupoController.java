@@ -42,9 +42,10 @@ public class GrupoController {
             mv.addObject("button", "Salvar");
         }
 
-        if (!isUnique) {
+        if (!isUnique && isNewGrupo) {
             mv.addObject("grupo", grupo);
             mv.addObject("usernameError", "Grupo com este Scrum Master já existe!");
+            return mv;
         }
 
         if (!isSaving) {

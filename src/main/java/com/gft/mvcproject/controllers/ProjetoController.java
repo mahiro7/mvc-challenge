@@ -33,9 +33,10 @@ public class ProjetoController {
             mv.addObject("button", "Salvar");
         }
 
-        if (!isUnique) {
+        if (!isUnique && isNewProjeto) {
             mv.addObject("projeto", projeto);
             mv.addObject("error", "Projeto já existe!");
+            return mv;
         }
 
         if (!isSaving) {

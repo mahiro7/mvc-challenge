@@ -29,9 +29,10 @@ public class ProgramaStartController {
             mv.addObject("button", "Salvar");
         }
 
-        if (!isUnique) {
+        if (!isUnique && isNewProgramaStart) {
             mv.addObject("programaStart", programaStart);
             mv.addObject("error", "Turma já existe!");
+            return mv;
         }
 
         if (!isSaving) {
